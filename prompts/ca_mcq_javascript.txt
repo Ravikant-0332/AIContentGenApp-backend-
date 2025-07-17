@@ -1,53 +1,58 @@
-You are a JavaScript developer specializing in **{{subject}}** with 20 years of experience. You need to prepare **{{no_of_questions}}** **{{difficulty_level}}** JavaScript multiple-choice and code analysis questions for the recruitment of freshers on the topic of **{{topic}}** in the **{{subject}}** domain.
+### JavaScript Recruitment Question Creation
 
+
+You are a JavaScript developer with 20 years of experience. You need to prepare {{no_of_questions}} Easy, Medium and Hard JavaScript multiple-choice and algorithm analysis questions for the recruitment of freshers on the topic of {{topic}} in the JavaScript coding.
+
+
+Generate exactly {{no_of_questions}} distinct multiple-choice JavaScript questions on the topic {{topic}}.
+Number the questions from 1 to {{no_of_questions}}.
+Provide the output as a valid JSON array with each question object formatted exactly as shown below.
+Do not include any text outside the JSON — only return the JSON array.
+
+---
 
 ### Enhanced Content Guidelines for Developing Unique and Quality JavaScript Content
 
-**Format:**
+### **Format:**
 
 - All content must be written in Markdown format for readability and consistency.
 - Include proper formatting for JavaScript code snippets using backticks (\`) to ensure clear syntax highlighting.
 
-
-**Code Snippets:**
-
-- Use realistic and context-driven examples to make code snippets relatable to real-world scenarios.
+### **Code Snippets:**
+- Use realistic and context-driven examples to make algorithms relatable to real-world scenarios.
 - Avoid comments within the code snippets; ensure they are self-explanatory through their structure.
 - Use meaningful variable and function names to enhance understanding and relevance.
-- Test all code snippets for correctness and edge cases to ensure accuracy.
+- Test all algorithms for correctness and edge cases to ensure accuracy.
 
-
-**Answer Format:**
-
+### **Answer Format:**
 - Each question must have exactly four options, with only one correct answer.
 - Ensure incorrect options are:
   - **Plausible:** They should closely resemble the correct answer or contain common mistakes.
   - **Diverse:** Cover a range of plausible errors or variations to avoid predictability.
   - **Randomized:** The correct answer's position should be randomized among the four.
 
-**Answer Explanation:**
-
+### **Answer Explanation:**
 - Provide a concise, yet thorough explanation (up to 100 words) for each answer.
-- Break down the solution step-by-step, detailing the role of each code component.
+- Break down the solution step-by-step, detailing the role of each algorithm component.
 - Highlight the logic and reasoning behind the correct answer while briefly addressing why the incorrect options fail.
+- Use diagrams or tables (if needed) to clarify relationships or outputs.
 
+---
 
-**Additional Guidelines for Unique and High-Quality Content:**
-
+### Additional Guidelines for Unique and High-Quality Content
 1. **Variety and Creativity:**
-   - Ensure all questions are distinct and avoid repetition of concepts or patterns.
-   - Incorporate real-world scenarios (e.g., employee management, user interface interactions, etc.) for practical relevance.
-   - Use diverse question types such as:
-     - Predicting the output of a function.
-     - Identifying errors or improvements in the code.
-     - Writing or analyzing functions based on a given scenario or data set.
-     - Filling the space left in the code where student can select the option which will run and give the output correctly (In this give the blank space with "____" this four underscore).
-     - Finding the syntax error question.
-     - Output was given in the question and debugging the incorrect code to get the respective output.
 
-2. **Code Design:**
-   - Provide a clear description of the problem, and relevant mock data or parameters for complex questions to make them self-contained.
-   - Use well-defined examples that mimic real-world JavaScript use cases (e.g., handling arrays, asynchronous operations, or DOM manipulation).
+   - Ensure all questions are distinct and avoid repetition of concepts or patterns.
+   - Incorporate real-world scenarios (e.g., sorting data from APIs, filtering objects, tree traversals).
+   - Use diverse question types such as:
+     - **Output Prediction:** Candidates predict the output of the given code.
+     - **Error Identification:** Candidates identify and correct errors in a code snippet.
+     - **Blank Filling:** Candidates complete missing parts in the code.
+     - **Code Debugging:** Candidates find and fix errors in the code.
+
+2. **Problem Statement Design:**
+   - Provide problem statements with sufficient information to make the question self-contained.
+   - Use well-defined problems that mimic real-world applications (e.g., filtering a dataset, event handling logic).
 
 3. **Clarity and Precision:**
    - Ensure the language is clear and concise without ambiguity.
@@ -62,173 +67,84 @@ You are a JavaScript developer specializing in **{{subject}}** with 20 years of 
    - Focus on creating questions that can be extended into different difficulty levels with minor tweaks.
 
 6. **Error-Free Content:**
-   - Test all code snippets and ensure they execute as intended without syntax or logical errors.
+   - Test all algorithms and ensure they execute as intended without logical errors.
    - Proofread all text for grammatical correctness and coherence.
 
 7. **Engagement:**
-   - Include interactive elements such as solving a problem based on a scenario or analyzing a piece of JavaScript code for performance issues.
+   - Include interactive elements such as solving an algorithmic problem or analyzing the time complexity of a solution.
 
 8. **Feedback Mechanism:**
    - For explanation-based questions, highlight both the correct and incorrect reasoning clearly.
    - Provide learning tips or additional references for deeper understanding of the concept.
-
-**Reference Questions**
-Use the below-provided JavaScript code and concepts for your reference.
-
 ---
+
+### Reference Questions
+
+Use the below-provided JavaScript algorithm questions and concepts for your reference.
 
 <Section>
-## 1. HTML Select Element
-
-The HTML `select` element is used to create a drop-down list.
-
-```html
-<select></select>
-```
-
-### 1.1 HTML Option Element
-
-The HTML `option` element is used to create the menu option of a drop-down list.
-
-The text content of the HTML `option` element is used as a label.
-
-```html
-<select>
-<option>Active</option>
-</select>
-```
-
-#### 1.1.1 The value Attribute
-
-Every HTML `option` element should contain the HTML `value` attribute.
-
-```html
-<option value="Active">Active</option>
-```
-
-## 2. HTML Input Element
-
-### 2.1 Radio
-
-The HTML `input` radio element is used to select one option among a list of given options.
-
-```html
-<input type="radio" id="genderMale" value="Male" />
-<input type="radio" id="genderFemale" value="Female" />
-```
-
-#### 2.1.1 HTML name attribute
-
-The HTML `name` Attribute specifies the name for an HTML Element.
-
-```html
-<input type="radio" value="Male" name="gender" />
-```
-
-#### 2.1.2 Radio Group
-
-All the radio buttons with same name collectively called as a radio group.
-
-We can select only one radio button within a radio group.
-
-```html
-<input type="radio" value="Male" name="gender" />
-<input type="radio" value="Female" name="gender" />
-```
-
-## 3. Boolean Attributes
-
-For the HTML Boolean attributes, we only specify the name of the HTML attribute.
-
-The presence of a boolean attribute represents the `true` value, and the absence represents the `false` value.
-
-### 3.1 HTML selected attribute
-
-The `selected` attribute specifies that an option should be pre-selected when the page loads.
-
-```html
-<option value="Active" selected>Active</option>
-```
-
-### 3.2 HTML checked attribute
-
-The `checked` attribute specifies that an input element should be pre-selected (checked) when the page loads.
-
-```html
-<input type="radio" id="genderMale" value="Male" name="gender" checked />
-```
-
-Try out the HTML `select` element, `input` radio element and the boolean attributes in the below Code Playground.
-
+{{syllabus_details}}
 </Section>
-
-**Question Styles and Difficulty Levels**
-
-- **Easy Questions:**
-  Involve basic comprehension and application of fundamental JavaScript concepts, such as identifying syntax errors or predicting the result of simple functions.
-
-- **Medium Questions:**
-  Require understanding and applying intermediate principles, such as debugging code with multiple operations or explaining the result of moderately complex code.
-
-- **Hard Questions:**
-  Challenge deep JavaScript knowledge and problem-solving skills, involving optimization, advanced function structures, and asynchronous programming.
 
 ---
 
-**Instructions for Generating Code Analysis Questions**
+### Question Styles and Difficulty Levels
+
+### **Easy Questions:**
+Involve basic comprehension and application of fundamental JavaScript concepts, such as identifying syntax errors or predicting the result of simple algorithms.
+
+### **Medium Questions:**
+Require understanding and applying intermediate principles, such as debugging algorithms with multiple conditions or explaining the result of moderately complex code snippets.
+
+### **Hard Questions:**
+Challenge deep JavaScript knowledge and problem-solving skills, focusing on **advanced JavaScript concepts**, such as:
+
+- **Asynchronous programming** (e.g., Promises, async/await).
+- **Optimization techniques** (e.g., performance tuning, memory management).
+- **Advanced ES6+ features** (e.g., destructuring, generators, spread/rest operators).
+- **Complex UI manipulation** and **event handling**.
+
+
+---
+
+## Question Types:
+Generate the questions using the following four question type:
+
+- **Output Prediction:** Candidates predict the output of the given code.
+- **Error Identification:** Candidates identify and correct errors in a code snippet.
+- **Blank Filling:** Candidates complete missing parts in the code.
+- **Code Debugging:** Candidates find and fix errors in the code.
+
+---
+
+### Instructions for Generating Algorithm Analysis Questions
 
 Generate the questions using the following JSON format:
 
 ```json
 [
   {
-    "question_text": "Question Here",
-    "code_data": "JavaScript Code Here",
-    "answer_count": 4,
-    "options": {
-      "Option 1 here": "TRUE or FALSE",
-      "Option 2 here": "TRUE or FALSE",
-      "Option 3 here": "TRUE or FALSE",
-      "Option 4 here": "TRUE or FALSE"
-    },
-    "difficulty_level": "Difficulty Level Here",
-    "answer_explanation_content": "Explanation here"
-  }
+  "question_text": "What will be the output of the following JavaScript code that prints the elements of an array?",
+  "code_data": "const arr = [5, 7, 9, 11];\nlet output = \"\";\nfor (let i = 0; i < arr.length; i++) {\n  output += arr[i] + \" \";\n}\nconsole.log(output.trim());",
+  "answer_count": 4,
+  "options": {
+    "5 7 9 11": "TRUE",
+    "7 5 11 9": "FALSE",
+    "5 7 9": "FALSE",
+    "5 9 11 7": "FALSE"
+  },
+  "difficulty_level": "EASY",
+  "answer_explanation_content": "The code concatenates the elements of the array into a string, separating them with spaces, and prints them in one line. The correct output is '5 7 9 11'."
+}
+
 ]
 ```
 
+---
 
-Follow the below instructions to generate multiple-choice answer and explanation:
-
-
-1. Put question text from content in the cell where "Question here" is written.
-2. Put the code_data from content in the cell where " Code data Here" is written and this must not be blank,add the \n ,whenever required in the code for user readability
-3. Put the Options from content in the "Options" cell where "option-1","option-2","option-3" and "option-4" are written, in the format of four key-value pairs. Put Options as keys in this object, and corresponding value should be either TRUE or FALSE.
-4. Make sure to generate only one correct option and three incorrect options. The value of the correct option has to be TRUE and the incorrect option has to be FALSE. Every time, the order of the correct option should be random.
-5. In the `difficulty_level` key, do the following: If the question is easy, then the `difficulty_level` will be 0, if it is medium, then the `difficulty_level` will be 1 or if it is hard, then the `difficulty_level` will be 2.
-6. In the "answer_explanation_content" key, do the following: Imagine you are a teacher and you have a very beginner level students to teach,Explain the core concept first, break down the code line-by-line, highlight key operations and logic, so make sure to explain the answer very briefly in a simplest terms to be able understand by the beginners and simply don't put question and answer again in the explanation. Explain the answer having up to 100 words.
-
-**Note**:  The `question_text`, `code_data` and `options` are separated by "\n\n```\n"
-
-Here is the example data:
-
-```json
-{
-    "question_text": "what is the output for the following JavaScript code snippet:",
-    "code_data": "let arr = [1, 2, 3, 4];\nlet result = arr.map(num => num * 2);\nconsole.log(result);",
-    "answer_count": 4,
-    "options": {
-        "[2, 4, 6, 8]": "TRUE",
-        "[1, 2, 3, 4]": "FALSE",
-        "[4, 6, 8, 10]": "FALSE",
-        "[1, 4, 9, 16]": "FALSE"
-    },
-    "difficulty_level": "EASY",
-    "answer_explanation_content": "The `map()` method creates a new array by applying the given function to each element of the original array. In this case, the function multiplies each number by 2, resulting in the array [2, 4, 6, 8]."
-}
-```
 **Note**:
-
-- Only prepare the questions based on the topic provided. Each question should be different from each other
+- Output should only genarated from Reference Questions content.
 - Make sure your response will be json string in the given format and which can be easily parsed to json object.
 - [IMPORTANT] Your responses should only contain the json without any backtick or any kind of formatting. It should be a single  json string which can be parsed into json directly.
+
+---

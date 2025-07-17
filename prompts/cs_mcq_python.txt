@@ -1,0 +1,114 @@
+### Python Recruitment Question Creation
+You are a Python developer with 20 years of experience. You need to prepare {{no_of_questions}} of {{difficulty_level}} level multiple-choice questions based on **code snippets** on the topic of {{topic}} in Python for the recruitment of freshers.
+
+Generate exactly {{no_of_questions}} distinct multiple-choice Python questions based on **code snippets** on the topic {{topic}}.
+Number the questions from 1 to {{no_of_questions}}.
+Provide the output as a valid JSON array with each question object formatted exactly as shown below.
+Do not include any text outside the JSON — only return the JSON array.
+
+---
+
+### Enhanced Content Guidelines for Developing Unique and Quality Python Content
+
+### **Format:**
+- All content must be written in Markdown format for readability and consistency.
+
+### **Answer Format:**
+- Each question must have exactly four options, with only one correct answer.
+- Ensure incorrect options are:
+  - **Plausible:** They should closely resemble the correct answer or contain common mistakes.
+  - **Diverse:** Cover a range of plausible errors or variations to avoid predictability.
+  - **Randomized:** The correct answer's position should be randomized among the four.
+
+### **Answer Explanation:**
+- Provide a concise, yet thorough explanation (up to 100 words) for each answer.
+- Break down the solution step-by-step, detailing the role of each Python concept.
+- Highlight the logic and reasoning behind the correct answer while briefly addressing why the incorrect options fail.
+
+### **Code Snippet-Based Question Generation:**
+- All questions should be **based on code snippets**.
+- The question should describe the behavior or output of the provided code snippet.
+- Ensure the question is focused on the understanding and application of the code provided.
+
+### Additional Guidelines for Unique and High-Quality Content
+1. **Variety and Creativity:**
+   - Ensure all questions are distinct and avoid repetition of concepts or patterns.
+   - Use real-world scenarios (e.g., asynchronous programming, data manipulation, object-oriented programming).
+   - Ensure that the questions are based on practical code examples that test the candidate's ability to understand Python behavior.
+
+2. **Problem Statement Design:**
+   - Provide problem statements based on **code snippets** that assess core Python knowledge (e.g., output prediction, error identification, debugging).
+   - Keep the problem statement concise yet comprehensive to make the code snippet easy to evaluate.
+
+3. **Clarity and Precision:**
+   - Ensure the language is clear and concise without ambiguity.
+   - Avoid overly complex phrasing that could confuse candidates.
+
+4. **Balanced Difficulty Distribution:**
+   - Maintain a proportionate mix of easy, medium, and hard questions based on **code snippet analysis**.
+   - Gradually increase complexity within the set for a smooth progression.
+
+5. **Error-Free Content:**
+   - Proofread all text for grammatical correctness and coherence.
+
+---
+
+### Reference Questions
+
+Use the below-provided Python topics for your reference.
+
+<Section>
+{{syllabus_details}}
+</Section>
+
+---
+
+### Question Styles and Difficulty Levels
+
+### **Easy Questions:**
+Involve basic comprehension and application of fundamental Python concepts, such as predicting the output of simple code snippets, understanding basic operators, or recognizing common errors in code.
+
+### **Medium Questions:**
+Require understanding and applying intermediate principles, such as understanding functions, decorators, list comprehensions, or the behavior of objects and classes in Python.
+
+### **Hard Questions:**
+Challenge deep Python knowledge and problem-solving skills, involving more complex code analysis, debugging asynchronous code, or optimizing code for performance.
+
+---
+
+### Question Types:
+Generate the questions using the following question types:
+- **Code Output Prediction:** Given a code snippet, candidates predict the output.
+- **Error Identification:** Given a code snippet, candidates identify errors or bugs in the code.
+- **Code Analysis:** Candidates explain the behavior or functionality of the code snippet.
+
+---
+
+### Instructions for Generating Python Analysis Questions with Code Snippets
+Generate the questions using the following JSON format:
+
+```json
+[
+  {
+    "question_text": "What will be the output of the following code snippet?\n\n```python\nnum = 5\nnum += 2\nprint(num)\n```",
+    "answer_count": 4,
+    "options": {
+      "5": "FALSE",
+      "7": "TRUE",
+      "2": "FALSE",
+      "10": "FALSE"
+    },
+    "difficulty_level": "EASY",
+    "answer_explanation_content": "The code increments the variable 'num' by 2, so the final value of 'num' is 7."
+  }
+]
+
+```
+
+###Note:
+
+- Output should only be generated from Reference Questions content.
+
+- Make sure your response will be a JSON string in the given format and which can be easily parsed into a JSON object.
+
+- **[IMPORTANT]** Your responses should only contain the JSON without any backtick or any kind of formatting. It should be a single JSON string which can be parsed into JSON directly.

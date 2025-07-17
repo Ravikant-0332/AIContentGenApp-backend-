@@ -1,0 +1,110 @@
+### Python Theoretical MCQ Generator Prompt
+You are a Python expert with 20 years of experience. You need to prepare {{no_of_questions}} of {{difficulty_level}} level multiple-choice questions on the topic of {{topic}} in Python for educational purposes.
+
+Generate exactly {{no_of_questions}} distinct multiple-choice Python questions on the topic {{topic}}.  
+Number the questions from 1 to {{no_of_questions}}.  
+Provide the output as a valid JSON array with each question object formatted exactly as shown below.  
+Do not include any text outside the JSON — only return the JSON array.
+
+---
+
+### Enhanced Content Guidelines for Developing Unique and Quality Python Content
+
+### **Format:**
+- All content must be written in Markdown format for readability and consistency.
+
+### **Answer Format:**
+- Each question must have exactly four options, with only one correct answer.
+- Ensure incorrect options are:
+  - **Plausible:** They should closely resemble the correct answer or contain common mistakes.
+  - **Diverse:** Cover a range of plausible errors or variations to avoid predictability.
+  - **Randomized:** The correct answer's position should be randomized among the four options.
+
+### **Answer Explanation:**
+- Provide a concise, yet thorough explanation (up to 100 words) for each answer.
+- Break down the solution step-by-step, detailing the role of each Python concept.
+- Highlight the logic and reasoning behind the correct answer while briefly addressing why the incorrect options fail.
+
+### Additional Guidelines for Unique and High-Quality Content
+1. **Variety and Creativity:**
+   - Ensure all questions are distinct and avoid repetition of concepts or patterns.
+   - Incorporate real-world scenarios (e.g., file handling, object-oriented principles, error handling).
+   - Use diverse question types such as:
+     - **Theoretical Understanding:** Candidates demonstrate knowledge of Python concepts and their application.
+     - **Definitions and Terminology:** Candidates define Python concepts such as functions, libraries, or keywords.
+     - **Conceptual Explanation:** Candidates explain the role or effect of specific Python features in programming.
+
+2. **Problem Statement Design:**
+   - Provide problem statements with sufficient information to make the question self-contained.
+   - Use well-defined questions that assess core Python knowledge (e.g., explaining differences between methods, the purpose of Python operators).
+
+3. **Clarity and Precision:**
+   - Ensure the language is clear and concise without ambiguity.
+   - Avoid overly complex phrasing that could confuse candidates.
+
+4. **Balanced Difficulty Distribution:**
+   - Maintain a proportionate mix of easy, medium, and hard questions in a set.
+   - Gradually increase complexity within the set for a smooth progression.
+
+5. **Scalability and Reusability:**
+   - Structure content in a modular way so individual questions can be reused or adapted easily.
+   - Focus on creating questions that can be extended into different difficulty levels with minor tweaks.
+
+6. **Error-Free Content:**
+   - Proofread all text for grammatical correctness and coherence.
+
+---
+
+### **Syllabus for Python Theoretical MCQs**
+{{syllabus_details}}
+
+---
+
+### Question Styles and Difficulty Levels
+
+### **Easy Questions:**
+Involve basic comprehension and application of fundamental Python concepts, such as understanding data types, basic control flow, and built-in functions.
+
+### **Medium Questions:**
+Require understanding and applying intermediate Python principles, such as understanding the significance of Python libraries, handling exceptions, or using data structures like lists, dictionaries, and tuples.
+
+### **Hard Questions:**
+Challenge deep Python knowledge and problem-solving skills, involving advanced topics like decorators, generators, and memory management.
+
+---
+
+### Question Types:
+Generate the questions using the following question types:
+- **Theoretical Understanding:** Candidates explain the purpose or behavior of Python features.
+- **Definitions and Terminology:** Candidates define terms or concepts related to Python.
+- **Conceptual Explanation:** Candidates explain the effect or importance of specific Python properties and techniques.
+
+---
+
+### Instructions for Generating Python Analysis Questions
+Generate the questions using the following JSON format:
+
+```json
+[
+  {
+    "question_text": "What is the purpose of the 'def' keyword in Python?",
+    "answer_count": 4,
+    "options": {
+      "It defines a function in Python": "TRUE",
+      "It initializes a variable in Python": "FALSE",
+      "It creates a loop in Python": "FALSE",
+      "It handles errors in Python": "FALSE"
+    },
+    "difficulty_level": "EASY",
+    "answer_explanation_content": "The 'def' keyword is used to define a function in Python, enabling the reuse of code and improving code readability."
+  }
+]
+
+
+**Note**:
+
+- Output should only genarated from Reference Questions content.
+- Make sure your response will be json string in the given format and which can be easily parsed to json object.
+- [IMPORTANT] Your responses should only contain the json without any backtick or any kind of formatting. It should be a single  json string which can be parsed into json directly.
+
+---

@@ -13,3 +13,10 @@ class UserRequestTrack(models.Model):
     question_count = models.PositiveIntegerField()
     input_token = models.PositiveIntegerField()
     output_token = models.PositiveIntegerField()
+
+class PromptUpdateTrack(models.Model):
+    user = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    original_prompt = models.TextField()
+    updated_prompt = models.TextField()
+    content_type = models.CharField(max_length=100)

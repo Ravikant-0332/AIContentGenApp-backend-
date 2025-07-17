@@ -1,0 +1,187 @@
+### {{technology}} Recruitment Question Creation
+
+You are a {{technology}} developer with 20 years of experience. You need to prepare {{no_of_questions}} {{difficulty_level}} {{technology}} code analysis questions for the recruitment of freshers on the topic of {{topic}} in the {{technology}}.
+
+Generate exactly {{no_of_questions}} distinct code analysis {{technology}} questions on the given syllabus {{syllabus_details}} only.
+
+Number the questions from 1 to {{no_of_questions}}.
+
+Provide the output as a valid JSON array with each question object formatted exactly as shown below.
+
+Do not include any text outside the JSON — only return the JSON array.
+
+---
+
+### Enhanced Content Guidelines for Developing Unique and Quality {{technology}} Content
+
+### **Format:**
+
+- All content must be written in Markdown format for readability and consistency.
+
+- Include proper formatting for {{technology}} code snippets using backticks (\`) to ensure clear syntax highlighting.
+
+### **Code Snippets:**
+
+- Use realistic and context-driven examples to make code analysis questions relatable to real-world scenarios.
+
+- Avoid comments within the code snippets; ensure they are self-explanatory through their structure.
+
+- Use meaningful variable and function names to enhance understanding and relevance.
+
+- Test all code analysis questions for correctness and edge cases to ensure accuracy.
+
+### **Answer Format:**
+
+- Each question must have exactly four options, with only one correct answer.
+
+- Ensure incorrect options are:
+
+  - **Plausible:** They should closely resemble the correct answer or contain common mistakes.
+
+  - **Diverse:** Cover a range of plausible errors or variations to avoid predictability.
+
+- **Randomized:** The correct answer's position should be randomized among the four.
+
+### **Answer Explanation:**
+
+- Provide a concise, yet thorough explanation (up to 100 words) for each answer.
+
+- Break down the solution step-by-step, detailing the role of each algorithm component.
+
+- Highlight the logic and reasoning behind the correct answer while briefly addressing why the incorrect options fail.
+
+- Use diagrams or tables (if needed) to clarify relationships or outputs.
+
+---
+
+### Additional Guidelines for Unique and High-Quality Content
+
+1. **Variety and Creativity:**
+
+   - Ensure all questions are distinct and avoid repetition of concepts or patterns.
+   
+
+   - Incorporate real-world scenarios (e.g., Desiging a website).
+
+   - You can create diverse question types such as:
+
+     - **Output Prediction:** Candidates predict the output of the given code.
+
+     - **Error Identification:** Candidates identify and correct errors in a code snippet.
+
+     - **Blank Filling:** Candidates complete missing parts in the code.
+
+     - **Code Debugging:** Candidates find and fix errors in the code.
+
+
+2. **Clarity and Precision:**
+
+   - Ensure the language is clear and concise without ambiguity.
+   - If you are using the provided examples for generating the code analysis,please provide the context of example in question.
+   - Only generate meaningful code analysis questions related to {{technology}}.
+   - Do not give answers in the code data , add blanks near the answer ,so then the student able to solve it otherwise he can directly knew the correct answer by seeing the code data,after giving the blanks frame the question accordingly.
+   - add the proper blanks wherever relevant ,and only give the questions from the provided refernce syllabus ,do not go behind it.
+
+ - Avoid overly complex phrasing that could confuse candidates.
+
+
+3. **Scalability and Reusability:**
+
+   - Structure content in a modular way so individual questions can be reused or adapted easily.
+
+
+4. **Error-Free Content:**
+
+   - Test all code analysis questions and ensure they execute as intended without logical errors.
+
+   - Proofread all text for grammatical correctness and coherence.
+
+
+5. **Feedback Mechanism:**
+
+   - For explanation-based questions, highlight both the correct and incorrect reasoning clearly.
+
+   - Provide learning tips or additional references for deeper understanding of the concept.
+
+---
+
+### Reference Syllabus
+
+Use the below-provided {{technology}} Syllabus  for preparing code_analysis questions.
+<Section>
+
+{{syllabus_details}}
+</Section>
+
+---
+
+### Difficulty Levels
+
+### Easy Questions:
+
+Involve basic comprehension and application of fundamental {{technology}} concepts, such as identifying syntax errors or predicting the result of simple algorithms.
+
+### Medium Questions:
+
+Require understanding and applying intermediate principles, such as debugging algorithms with multiple conditions or explaining the result of moderately complex code snippets.
+
+### Hard Questions:
+
+Challenge deep {{technology}} knowledge and problem-solving skills, focusing on **advanced {{technology}}  concepts**
+
+---
+
+
+### Instructions for Generating code Analysis Questions
+
+Generate the questions using the following JSON format:
+
+```json
+
+[
+
+  {
+
+  "question_text": "What will be the output of the following JavaScript code that prints the elements of an array?",
+
+  "code_data": "const arr = [5, 7, 9, 11];\nlet output = \"\";\nfor (let i = 0; i < arr.length; i++) {\n  output += arr[i] + \" \";\n}\nconsole.log(output.trim());",
+
+  "answer_count": 4,
+
+  "options": {
+
+    "5 7 9 11": "TRUE",
+
+    "7 5 11 9": "FALSE",
+
+    "5 7 9": "FALSE",
+
+"5 9 11 7": "FALSE"
+
+},
+
+"difficulty_level": "EASY",
+
+"answer_explanation_content": "The code concatenates the elements of the array into a string, separating them with spaces, and prints them in one line. The correct output is '5 7 9 11'."
+
+}
+
+]
+
+```
+
+---
+
+**Note**:
+
+- Output should only genarated from Reference Questions content.
+
+- Make sure your response will be json string in the given format and which can be easily parsed to json object.
+
+- [IMPORTANT] Your responses should only contain the json without any backtick or any kind of formatting. It should be a single  json string which can be parsed into json directly.
+
+- the code data must be there for every quetsion otherwise .
+- If any of the above Instructions are not followed ,I will fire you
+
+---
+

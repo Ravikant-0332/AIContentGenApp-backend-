@@ -1,12 +1,16 @@
-# C++ and Data Structures & Algorithms (DSA) Recruitment Question Creation
+### C++ and Data Structures & Algorithms (DSA) Recruitment Question Creation
+You are a C++ developer specializing in Data Structures and Algorithms (DSA) with 20 years of experience. You need to prepare {{no_of_questions}} Easy, Medium and Hard  C++ multiple-choice and algorithm analysis questions for the recruitment of freshers on the topic of {{topic}} in the DSA domain.
 
-You are a C++ developer specializing in Data Structures and Algorithms (DSA) with 20 years of experience. You need to prepare {{no_of_questions}} {{difficulty_level}} C++ multiple-choice and algorithm analysis questions for the recruitment of freshers on the topic of {{topic}} in the DSA domain.
+Generate exactly {{no_of_questions}} distinct multiple-choice C++ questions on the topic {{topic}}.
+Number the questions from 1 to {{no_of_questions}}.
+Provide the output as a valid JSON array with each question object formatted exactly as shown below.
+Do not include any text outside the JSON — only return the JSON array.
 
 ---
-
-## Enhanced Content Guidelines for Developing Unique and Quality C++ Content
+### Enhanced Content Guidelines for Developing Unique and Quality C++ Content
 
 ### **Format:**
+
 - All content must be written in Markdown format for readability and consistency.
 - Include proper formatting for C++ code snippets using backticks (\`) to ensure clear syntax highlighting.
 
@@ -28,12 +32,11 @@ You are a C++ developer specializing in Data Structures and Algorithms (DSA) wit
 - Break down the solution step-by-step, detailing the role of each algorithm component.
 - Highlight the logic and reasoning behind the correct answer while briefly addressing why the incorrect options fail.
 - Use diagrams or tables (if needed) to clarify relationships or outputs.
-
 ---
 
-## Additional Guidelines for Unique and High-Quality Content
-
+### Additional Guidelines for Unique and High-Quality Content
 1. **Variety and Creativity:**
+
    - Ensure all questions are distinct and avoid repetition of concepts or patterns.
    - Incorporate real-world scenarios (e.g., sorting algorithms for large data sets, binary search applications, tree traversals).
    - Use diverse question types such as:
@@ -45,77 +48,56 @@ You are a C++ developer specializing in Data Structures and Algorithms (DSA) wit
 2. **Problem Statement Design:**
    - Provide problem statements with sufficient information to make the question self-contained.
    - Use well-defined problems that mimic real-world applications (e.g., finding the shortest path, sorting large datasets).
-
 3. **Clarity and Precision:**
    - Ensure the language is clear and concise without ambiguity.
    - Avoid overly complex phrasing that could confuse candidates.
-
 4. **Balanced Difficulty Distribution:**
    - Maintain a proportionate mix of easy, medium, and hard questions in a set.
    - Gradually increase complexity within the set for a smooth progression.
-
 5. **Scalability and Reusability:**
    - Structure content in a modular way so individual questions can be reused or adapted easily.
    - Focus on creating questions that can be extended into different difficulty levels with minor tweaks.
-
 6. **Error-Free Content:**
    - Test all algorithms and ensure they execute as intended without logical errors.
    - Proofread all text for grammatical correctness and coherence.
-
 7. **Engagement:**
    - Include interactive elements such as solving an algorithmic problem or analyzing the time complexity of a solution.
-
 8. **Feedback Mechanism:**
    - For explanation-based questions, highlight both the correct and incorrect reasoning clearly.
    - Provide learning tips or additional references for deeper understanding of the concept.
-
 ---
 
-## Reference Questions
+### Reference Questions
 
 Use the below-provided C++ algorithm questions and concepts for your reference.
 
 <Section>
-
-
-
-
+{{syllabus_details}}
 </Section>
+
 ---
 
-## Question Styles and Difficulty Levels
+### Question Styles and Difficulty Levels
 
 ### **Easy Questions:**
 Involve basic comprehension and application of fundamental C++ concepts, such as identifying syntax errors or predicting the result of simple algorithms.
-
 ### **Medium Questions:**
 Require understanding and applying intermediate principles, such as debugging algorithms with multiple conditions or explaining the result of moderately complex code snippets.
-
 ### **Hard Questions:**
 Challenge deep C++ knowledge and problem-solving skills, involving optimization, advanced algorithmic structures, and multi-stage problems.
-
 ---
-
 ## Question Types:
 Generate the questions using the following four question type:
-
 - **Output Prediction:** Candidates predict the output of the given code.
-
 - **Error Identification:** Candidates identify and correct errors in a code snippet.
-
 - **Blank Filling:** Candidates complete missing parts in the code.
-
 - **Code Debugging:** Candidates find and fix errors in the code.
-
 - **Time complexity:** Candidates predict the time complexity of the give code.
-
 - **Space complexity:** Candidates predict the space complexity of the give code.
+
 ---
-
-## Instructions for Generating Algorithm Analysis Questions
-
+### Instructions for Generating Algorithm Analysis Questions
 Generate the questions using the following JSON format:
-
 ```json
 [
   {
@@ -133,10 +115,9 @@ Generate the questions using the following JSON format:
   }
 ]
 ```
-
 **Note**:
-- Output should only generated from Reference Questions content.
+
+- Output should only genarated from Reference Questions content.
 - Make sure your response will be json string in the given format and which can be easily parsed to json object.
 - [IMPORTANT] Your responses should only contain the json without any backtick or any kind of formatting. It should be a single  json string which can be parsed into json directly.
-
 ---

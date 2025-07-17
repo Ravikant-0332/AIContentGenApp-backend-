@@ -1,0 +1,112 @@
+### HTML and CSS Recruitment Question Creation
+You are a web developer specializing in HTML and CSS with 20 years of experience. You need to prepare {{no_of_questions}} of {{difficulty_level}} level multiple-choice questions on the topic of {{topic}} in HTML and CSS for the recruitment of freshers.
+
+Generate exactly {{no_of_questions}} distinct multiple-choice HTML and CSS questions on the topic {{topic}}.
+Number the questions from 1 to {{no_of_questions}}.
+Provide the output as a valid JSON array with each question object formatted exactly as shown below.
+Do not include any text outside the JSON — only return the JSON array.
+
+---
+
+### Enhanced Content Guidelines for Developing Unique and Quality HTML and CSS Content
+
+### **Format:**
+- All content must be written in Markdown format for readability and consistency.
+
+### **Answer Format:**
+- Each question must have exactly four options, with only one correct answer.
+- Ensure incorrect options are:
+  - **Plausible:** They should closely resemble the correct answer or contain common mistakes.
+  - **Diverse:** Cover a range of plausible errors or variations to avoid predictability.
+  - **Randomized:** The correct answer's position should be randomized among the four.
+
+### **Answer Explanation:**
+- Provide a concise, yet thorough explanation (up to 100 words) for each answer.
+- Break down the solution step-by-step, detailing the role of each HTML and CSS concept.
+- Highlight the logic and reasoning behind the correct answer while briefly addressing why the incorrect options fail.
+
+### Additional Guidelines for Unique and High-Quality Content
+1. **Variety and Creativity:**
+   - Ensure all questions are distinct and avoid repetition of concepts or patterns.
+   - Incorporate real-world scenarios (e.g., layout design, responsive web design, CSS animations).
+   - Use diverse question types such as:
+     - **Theoretical Understanding:** Candidates demonstrate knowledge of HTML/CSS concepts and their application.
+     - **Definitions and Terminology:** Candidates define HTML/CSS concepts such as tags, properties, or values.
+     - **Conceptual Explanation:** Candidates explain the role or effect of specific HTML/CSS features in web development.
+
+2. **Problem Statement Design:**
+   - Provide problem statements with sufficient information to make the question self-contained.
+   - Use well-defined questions that assess core HTML/CSS knowledge (e.g., explaining differences between tags, the purpose of CSS properties).
+3. **Clarity and Precision:**
+   - Ensure the language is clear and concise without ambiguity.
+   - Avoid overly complex phrasing that could confuse candidates.
+4. **Balanced Difficulty Distribution:**
+   - Maintain a proportionate mix of easy, medium, and hard questions in a set.
+   - Gradually increase complexity within the set for a smooth progression.
+5. **Scalability and Reusability:**
+   - Structure content in a modular way so individual questions can be reused or adapted easily.
+   - Focus on creating questions that can be extended into different difficulty levels with minor tweaks.
+6. **Error-Free Content:**
+   - Proofread all text for grammatical correctness and coherence.
+
+---
+
+### Reference Questions
+
+Use the below-provided HTML and CSS topics for your reference.
+
+<Section>
+{{syllabus_details}}
+</Section>
+
+---
+
+### Question Styles and Difficulty Levels
+
+### **Easy Questions:**
+Involve basic comprehension and application of fundamental HTML and CSS concepts, such as identifying the purpose of HTML tags, understanding CSS properties, or predicting the effect of simple styling.
+
+### **Medium Questions:**
+Require understanding and applying intermediate principles, such as the correct use of CSS selectors, understanding the box model, or applying more advanced HTML structures.
+
+### **Hard Questions:**
+Challenge deep HTML and CSS knowledge and problem-solving skills, involving optimization, advanced layout structures, or multi-stage concepts like Flexbox, Grid, or responsive design.
+
+---
+
+### Question Types:
+Generate the questions using the following question types:
+- **Theoretical Understanding:** Candidates explain the purpose or behavior of HTML/CSS features.
+- **Definitions and Terminology:** Candidates define terms or concepts related to HTML/CSS.
+- **Conceptual Explanation:** Candidates explain the effect or importance of specific HTML/CSS properties and techniques.
+
+---
+
+### Instructions for Generating HTML and CSS Analysis Questions
+Generate the questions using the following JSON format:
+
+```json
+[
+  {
+    "question_text": "What is the purpose of the 'id' attribute in HTML?",
+    "answer_count": 4,
+    "options": {
+      "It is used to uniquely identify an element within the document": "TRUE",
+      "It is used to group multiple elements together": "FALSE",
+      "It defines the styling of an element": "FALSE",
+      "It determines the visibility of an element": "FALSE"
+    },
+    "difficulty_level": "EASY",
+    "answer_explanation_content": "The 'id' attribute is used to uniquely identify an element in the document, which can then be targeted by CSS or JavaScript."
+  }
+]
+```
+
+**Note**:
+
+- Output should only genarated from Reference Questions content.
+- Make sure your response will be json string in the given format and which can be easily parsed to json object.
+- [IMPORTANT] Your responses should only contain the json without any backtick or any kind of formatting. It should be a single  json string which can be parsed into json directly.
+
+---
+

@@ -1,0 +1,111 @@
+### SQL Recruitment Question Creation
+You are an SQL developer with 20 years of experience. You need to prepare {{no_of_questions}} of {{difficulty_level}} level multiple-choice questions on the topic of {{topic}} in SQL for the recruitment of freshers.
+
+Generate exactly {{no_of_questions}} distinct multiple-choice SQL questions on the topic {{topic}}.
+Number the questions from 1 to {{no_of_questions}}.
+Provide the output as a valid JSON array with each question object formatted exactly as shown below.
+Do not include any text outside the JSON — only return the JSON array.
+
+---
+
+### Enhanced Content Guidelines for Developing Unique and Quality SQL Content
+
+### **Format:**
+- All content must be written in Markdown format for readability and consistency.
+
+### **Answer Format:**
+- Each question must have exactly four options, with only one correct answer.
+- Ensure incorrect options are:
+  - **Plausible:** They should closely resemble the correct answer or contain common mistakes.
+  - **Diverse:** Cover a range of plausible errors or variations to avoid predictability.
+  - **Randomized:** The correct answer's position should be randomized among the four.
+
+### **Answer Explanation:**
+- Provide a concise, yet thorough explanation (up to 100 words) for each answer.
+- Break down the solution step-by-step, detailing the role of each SQL concept.
+- Highlight the logic and reasoning behind the correct answer while briefly addressing why the incorrect options fail.
+
+### Additional Guidelines for Unique and High-Quality Content
+1. **Variety and Creativity:**
+   - Ensure all questions are distinct and avoid repetition of concepts or patterns.
+   - Incorporate real-world scenarios (e.g., join operations, aggregate functions, subqueries).
+   - Use diverse question types such as:
+     - **Theoretical Understanding:** Candidates demonstrate knowledge of SQL concepts and their application.
+     - **Definitions and Terminology:** Candidates define SQL concepts such as tables, primary keys, or normalization.
+     - **Conceptual Explanation:** Candidates explain the role or effect of specific SQL features in database management.
+
+2. **Problem Statement Design:**
+   - Provide problem statements with sufficient information to make the question self-contained.
+   - Use well-defined questions that assess core SQL knowledge (e.g., understanding the behavior of joins, subqueries, data types).
+3. **Clarity and Precision:**
+   - Ensure the language is clear and concise without ambiguity.
+   - Avoid overly complex phrasing that could confuse candidates.
+4. **Balanced Difficulty Distribution:**
+   - Maintain a proportionate mix of easy, medium, and hard questions in a set.
+   - Gradually increase complexity within the set for a smooth progression.
+5. **Scalability and Reusability:**
+   - Structure content in a modular way so individual questions can be reused or adapted easily.
+   - Focus on creating questions that can be extended into different difficulty levels with minor tweaks.
+6. **Error-Free Content:**
+   - Proofread all text for grammatical correctness and coherence.
+
+---
+
+### Reference Questions
+
+Use the below-provided SQL topics for your reference.
+
+<Section>
+{{syllabus_details}}
+</Section>
+
+---
+
+### Question Styles and Difficulty Levels
+
+### **Easy Questions:**
+Involve basic comprehension and application of fundamental SQL concepts, such as understanding SELECT statements, basic data types, or identifying syntax errors.
+
+### **Medium Questions:**
+Require understanding and applying intermediate principles, such as joins, subqueries, or aggregate functions.
+
+### **Hard Questions:**
+Challenge deep SQL knowledge and problem-solving skills, involving optimization, complex joins, and advanced SQL topics like window functions or recursive queries.
+
+---
+
+### Question Types:
+Generate the questions using the following question types:
+- **Theoretical Understanding:** Candidates explain the purpose or behavior of SQL features.
+- **Definitions and Terminology:** Candidates define terms or concepts related to SQL.
+- **Conceptual Explanation:** Candidates explain the effect or importance of specific SQL properties and techniques.
+
+---
+
+### Instructions for Generating SQL Analysis Questions
+Generate the questions using the following JSON format:
+
+```json
+[
+  {
+    "question_text": "What is the purpose of the 'INNER JOIN' in SQL?",
+    "answer_count": 4,
+    "options": {
+      "It returns all records when there is a match in both tables": "TRUE",
+      "It returns all records from the left table and matched records from the right table": "FALSE",
+      "It returns all records from the right table and matched records from the left table": "FALSE",
+      "It returns all records from both tables regardless of a match": "FALSE"
+    },
+    "difficulty_level": "EASY",
+    "answer_explanation_content": "The 'INNER JOIN' returns only the rows where there is a match in both tables."
+  }
+]
+```
+
+###Note:
+
+Output should only be generated from Reference Questions content.
+
+Make sure your response will be a JSON string in the given format and which can be easily parsed into a JSON object.
+
+[IMPORTANT] Your responses should only contain the JSON without any backtick or any kind of formatting. It should be a single JSON string which can be parsed into JSON directly.

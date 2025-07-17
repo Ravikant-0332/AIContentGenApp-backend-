@@ -1,0 +1,121 @@
+### React.js Recruitment Question Creation  
+You are a React.js developer with 20 years of experience. You need to prepare {{no_of_questions}} of {{difficulty_level}} level multiple-choice questions based on **code snippets** on the topic of {{topic}} in React.js for the recruitment of freshers.
+
+Generate exactly {{no_of_questions}} distinct multiple-choice React.js questions based on **code snippets** on the topic {{topic}}.  
+Number the questions from 1 to {{no_of_questions}}.  
+Provide the output as a valid JSON array with each question object formatted exactly as shown below.  
+Do not include any text outside the JSON — only return the JSON array.
+
+---
+
+### Enhanced Content Guidelines for Developing Unique and Quality React.js Content
+
+### **Format:**
+- All content must be written in Markdown format for readability and consistency.
+
+### **Answer Format:**
+- Each question must have exactly four options, with only one correct answer.
+- Ensure incorrect options are:
+  - **Plausible:** They should closely resemble the correct answer or contain common mistakes.
+  - **Diverse:** Cover a range of plausible errors or variations to avoid predictability.
+  - **Randomized:** The correct answer's position should be randomized among the four.
+
+### **Answer Explanation:**
+- Provide a concise, yet thorough explanation (up to 100 words) for each answer.
+- Break down the solution step-by-step, detailing the role of each React.js concept.
+- Highlight the logic and reasoning behind the correct answer while briefly addressing why the incorrect options fail.
+
+### **Code Snippet-Based Question Generation:**
+- All questions should be **based on code snippets**.
+- The question should describe the behavior or output of the provided code snippet.
+- Ensure the question is focused on the understanding and application of the code provided.
+
+### **Types of Questions to be Prepared:**
+- **Code Output Prediction:** Given a code snippet, candidates predict what will be displayed on the user interface or browser (e.g., "What will be displayed when a user navigates to this route?").
+- **Error Identification:** Given a code snippet, candidates identify errors or bugs in the code (e.g., "What is wrong with this code?").
+- **Code Analysis:** Candidates explain the behavior or functionality of the code snippet (e.g., "What does this code do?").
+- **Filling the Blanks:** Given a code snippet with blanks, candidates are asked to fill in the correct part of the code to ensure it functions correctly or displays the desired output (e.g., "Fill in the missing part of the code to make this function work").
+- **Debugging the Code:** Given a buggy code snippet, candidates need to identify and fix the issues to make it work properly.
+
+### Additional Guidelines for Unique and High-Quality Content  
+1. **Variety and Creativity:**
+   - Ensure all questions are distinct and avoid repetition of concepts or patterns.
+   - Use real-world scenarios (e.g., state management, React Hooks, component lifecycle).
+   - Ensure that the questions are based on practical code examples that test the candidate's ability to understand React.js behavior.
+
+2. **Problem Statement Design:**
+   - Provide problem statements based on **code snippets** that assess core React.js knowledge (e.g., React state updates, hooks usage, component lifecycle).
+   - Keep the problem statement concise yet comprehensive to make the code snippet easy to evaluate.
+
+3. **Clarity and Precision:**
+   - Ensure the language is clear and concise without ambiguity.
+   - Avoid overly complex phrasing that could confuse candidates.
+
+4. **Balanced Difficulty Distribution:**
+   - Maintain a proportionate mix of easy, medium, and hard questions based on **code snippet analysis**.
+   - Gradually increase complexity within the set for a smooth progression.
+
+5. **Error-Free Content:**
+   - Proofread all text for grammatical correctness and coherence.
+
+---
+
+### Reference Questions
+
+Use the below-provided React.js topics for your reference.
+
+<Section>  
+{{syllabus_details}}  
+</Section>  
+
+---
+
+### Question Styles and Difficulty Levels
+
+### **Easy Questions:**  
+Involve basic comprehension and application of fundamental React.js concepts, such as understanding state, props, or component rendering.
+
+### **Medium Questions:**  
+Require understanding and applying intermediate principles, such as handling events, using hooks (like `useState` or `useEffect`), or managing forms.
+
+### **Hard Questions:**  
+Challenge deep React.js knowledge and problem-solving skills, such as complex hooks usage, component optimization, or managing component lifecycle intricacies.
+
+---
+
+### Question Types:  
+Generate the questions using the following question types:
+- **Code Output Prediction:** Given a code snippet, candidates predict the output.
+- **Error Identification:** Given a code snippet, candidates identify errors or bugs in the code.
+- **Code Analysis:** Candidates explain the behavior or functionality of the code snippet.
+- **Filling the Blanks:** Given a code snippet with missing parts, candidates fill in the blanks to complete the code.
+- **Debugging the Code:** Given a buggy code snippet, candidates find and fix the issues to make the code work.
+
+---
+
+### Instructions for Generating React.js Code Analysis Questions with Code Snippets  
+Generate the questions using the following JSON format:
+
+```json
+[
+  {
+    "question_text": "What will be the output when the user navigates to the `/profile` route in this setup?\n\n**File name: App.js**\n\n```jsx\nimport { BrowserRouter, Routes, Route } from 'react-router-dom';\nimport Home from './Home';\nimport Profile from './Profile';\n\nconst App = () => (\n  <BrowserRouter>\n    <Routes>\n      <Route path='/' element={<Home />} />\n      <Route path='/profile' element={<Profile />} />\n    </Routes>\n  </BrowserRouter>\n);\n```\n\n**File name: Profile.js**\n\n```jsx\nconst Profile = () => {\n  return <div>Welcome to the Profile page!</div>;\n};\nexport default Profile;\n```",
+    "answer_count": 4,
+    "options": {
+      "Welcome to the Profile page!": "TRUE",
+      "Home page content": "FALSE",
+      "404 Not Found page": "FALSE",
+      "Blank page with no content": "FALSE"
+    },
+    "difficulty_level": "MEDIUM",
+    "answer_explanation_content": "When the user navigates to `/profile`, the `Profile` component is rendered, displaying the message 'Welcome to the Profile page!' as defined in the `Profile.js` file."
+  }
+]
+
+###Note:
+
+- Output should only be generated from Reference Questions content.
+
+- Make sure your response will be a JSON string in the given format and which can be easily parsed into a JSON object.
+
+- **[IMPORTANT]** Your responses should only contain the JSON without any backtick or any kind of formatting. It should be a single JSON string which can be parsed into JSON directly.

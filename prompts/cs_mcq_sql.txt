@@ -1,0 +1,118 @@
+### SQL Recruitment Question Creation
+You are an SQL developer with 20 years of experience. You need to prepare {{no_of_questions}} of {{difficulty_level}} level multiple-choice questions based on **SQL code snippets** on the topic of {{topic}} in SQL for the recruitment of freshers.
+
+Generate exactly {{no_of_questions}} distinct multiple-choice SQL questions based on **SQL code snippets** on the topic {{topic}}.
+Number the questions from 1 to {{no_of_questions}}.
+Provide the output as a valid JSON array with each question object formatted exactly as shown below.
+Do not include any text outside the JSON — only return the JSON array.
+
+---
+
+### Enhanced Content Guidelines for Developing Unique and Quality SQL Content
+
+### **Format:**
+- All content must be written in Markdown format for readability and consistency.
+
+### **Answer Format:**
+- Each question must have exactly four options, with only one correct answer.
+- Ensure incorrect options are:
+  - **Plausible:** They should closely resemble the correct answer or contain common mistakes.
+  - **Diverse:** Cover a range of plausible errors or variations to avoid predictability.
+  - **Randomized:** The correct answer's position should be randomized among the four.
+
+### **Answer Explanation:**
+- Provide a concise, yet thorough explanation (up to 100 words) for each answer.
+- Break down the solution step-by-step, detailing the role of each SQL concept.
+- Highlight the logic and reasoning behind the correct answer while briefly addressing why the incorrect options fail.
+
+### **Code Snippet-Based Question Generation:**
+- All questions should be **based on SQL code snippets**.
+- The question should describe the behavior or output of the provided SQL code snippet.
+- Ensure the question is focused on the understanding and application of the SQL code provided.
+- Include **tables** in the example to make the question realistic and relevant.
+
+### Additional Guidelines for Unique and High-Quality Content
+1. **Variety and Creativity:**
+   - Ensure all questions are distinct and avoid repetition of concepts or patterns.
+   - Incorporate real-world scenarios (e.g., complex JOIN operations, GROUP BY, aggregate functions).
+   - Ensure that the questions are based on practical code examples that test the candidate's ability to understand SQL queries.
+
+2. **Problem Statement Design:**
+   - Provide problem statements based on **SQL code snippets** that assess core SQL knowledge (e.g., output prediction, error identification, query optimization).
+   - Keep the problem statement concise yet comprehensive to make the SQL code snippet easy to evaluate.
+
+3. **Clarity and Precision:**
+   - Ensure the language is clear and concise without ambiguity.
+   - Avoid overly complex phrasing that could confuse candidates.
+
+4. **Balanced Difficulty Distribution:**
+   - Maintain a proportionate mix of easy, medium, and hard questions based on **SQL code snippet analysis**.
+   - Gradually increase complexity within the set for a smooth progression.
+
+5. **Error-Free Content:**
+   - Proofread all text for grammatical correctness and coherence.
+
+---
+
+### Reference Questions
+
+Use the below-provided SQL topics for your reference.
+
+<Section>
+{{syllabus_details}}
+</Section>
+
+---
+
+### Question Styles and Difficulty Levels
+
+### **Easy Questions:**
+Involve basic comprehension and application of fundamental SQL concepts, such as understanding SELECT statements, basic data types, or identifying simple syntax errors in SQL queries.
+
+### **Medium Questions:**
+Require understanding and applying intermediate principles, such as JOIN operations, subqueries, GROUP BY, and aggregate functions in SQL code.
+
+### **Hard Questions:**
+Challenge deep SQL knowledge and problem-solving skills, involving complex SQL queries, optimization, and advanced SQL topics like window functions or recursive queries.
+
+---
+
+### Question Types:
+Generate the questions using the following question types:
+- **Code Output Prediction:** Given an SQL code snippet, candidates predict the output.
+- **Error Identification:** Given an SQL code snippet, candidates identify errors or bugs in the code.
+- **Code Analysis:** Candidates explain the behavior or functionality of the SQL code snippet.
+
+---
+
+### Instructions for Generating SQL Analysis Questions with Code Snippets
+Generate the questions using the following JSON format:
+
+```json
+[
+  {
+    "question_text": "Table: orders\n\n| orderId | customerId | product     | quantity | orderDate   |\n|---------|------------|-------------|----------|-------------|\n| 1       | 101        | Laptop      | 1        | 2023-01-01  |\n| 2       | 102        | Smartphone  | 2        | 2023-01-02  |\n| 3       | 103        | Tablet      | 3        | 2023-01-03  |\n| 4       | 104        | Monitor     | 4        | 2023-01-04  |\n| 5       | 105        | Keyboard    | 5        | 2023-01-05  |\n| 6       | 106        | Mouse       | 6        | 2023-01-06  |\n| 7       | 107        | Printer     | 7        | 2023-01-07  |\n| 8       | 108        | Router      | 8        | 2023-01-08  |\n| 9       | 109        | Headphones  | 9        | 2023-01-09  |\n| 10      | 110        | External HDD| 10       | 2023-01-10  |\n\nIdentify the error in the query:\n\n```sql\nSELECT customerId, SUM(quantity) AS total_quantity\nFROM orders\nWHERE orderDate BETWEEN '2023-01-01' AND '2023-01-05'\nGROUP BY customerId\nORDER BY total_quantity DESCENDING;```",
+    "answer_count": 4,
+    "options": {
+      "The WHERE clause should use 'OR' instead of 'AND'": "FALSE",
+      "The keyword DESCENDING is incorrect; it should be DESC": "TRUE",
+      "The GROUP BY clause is unnecessary and should be removed": "FALSE",
+      "The SELECT clause must include 'orderId'": "FALSE"
+    },
+    "difficulty_level": "EASY",
+    "answer_explanation_content": "The error in the query is the use of the keyword 'DESCENDING'. In SQL, the correct keyword to sort results in descending order is 'DESC'. The corrected part of the query should be 'ORDER BY total_quantity DESC'. The other parts of the query are correctly formulated to sum the quantities for each customer within the specified date range and order the results by the total quantity in descending order."
+  }
+]
+
+
+
+```
+
+### Note:
+
+- Output should only be generated from Reference Questions content.
+
+- Make sure your response will be a JSON string in the given format and which can be easily parsed into a JSON object.
+
+- **[IMPORTANT]** Your responses should only contain the JSON without any backtick or any kind of formatting. It should be a single JSON string which can be parsed into JSON directly.
+

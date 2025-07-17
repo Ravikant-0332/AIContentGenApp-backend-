@@ -10,5 +10,7 @@ class GptResponseSerializer(serializers.Serializer):
     topic = serializers.CharField()
     subtopic = serializers.CharField()
     number_of_question = serializers.IntegerField()
+    is_updated = serializers.BooleanField(required=False)
+    process_name = serializers.CharField(max_length=100, required=False)
 
 
