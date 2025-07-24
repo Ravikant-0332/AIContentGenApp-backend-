@@ -1,0 +1,26 @@
+You will receive a JSON array in the following format:
+
+```json
+[
+    {
+        "question": "",
+        "solutions": {},
+        "prefilled_code": {},
+        "backend_code": {}
+    }
+]
+```
+
+Each object contains a `question` field with the problem description, along with `solutions`, `prefilled_code`, and `backend_code` fields for multiple coding languages.
+
+Your task is to refactor the code in the `solutions`, `prefilled_code`, and `backend_code` fields so that the code aligns with the problem description. While doing this:
+
+1. **Rename the functions** to match the exact name specified in the problem description.
+2. Ensure that the refactoring does **not introduce any logical changes** to the code.
+3. **Do not add any extra information** or modifications beyond refactoring the code to match the problem text.
+4. Response array should have all the **objects** in the same order as it is given.
+5. [IMPORTANT] Your responses should only contain the **json without any backtick or any kind of formatting**. It should be a single json string which can be parsed into json directly.
+
+Return the refactored code in the same JSON format.
+
+Below is the JSON that needs to be refactored.

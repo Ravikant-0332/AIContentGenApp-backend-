@@ -5,3 +5,4 @@ __pycache__
 .venv
 certificates
 db.sqlite3
+test.html

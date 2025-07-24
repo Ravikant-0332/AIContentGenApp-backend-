@@ -2,6 +2,7 @@ import json
 import re
 import copy
 import uuid
+import base64
 from openai import OpenAI
 from django.conf import settings
 from rest_framework import status
@@ -163,6 +164,7 @@ class PromptView(APIView):
         else:
             return Response({"error": "Invalid Data Passed"}, status=status.HTTP_400_BAD_REQUEST)
 
+
     def get_prompt(self, request_type):
 
         file_name = {
@@ -205,15 +207,17 @@ class CodingReplicatorView(APIView):
         with open(settings.BASE_DIR / 'prompts' / 'coding_replication.txt') as f:
             base_prompt = f.read().strip()
 
+        with open(settings.BASE_DIR / 'prompts' / 'code_refractor.txt') as f:
+            code_prompt = f.read().strip()
+
         if base_questions is not None or not isinstance(base_questions, list):
+
             replicas = {f"question{i + 1}": [base_questions[i]] for i in range(len(base_questions))}
             input_token, output_token = 0, 0
             try:
                 for i, question in enumerate(base_questions):
                     question_text = question['question_text']
                     question_short_text = question['short_text']
-
-                    # prompt = base_prompt
 
                     prompt = base_prompt.format(QUESTION=question_text, SHORT_TEXT=question_short_text)
 
@@ -226,14 +230,36 @@ class CodingReplicatorView(APIView):
 
                     input_token += response.get("input_token")
                     output_token += response.get("output_token")
+                    # print(response.get("message"))
                     replicated_questions = json.loads(self.clean_json_string(response.get("message")))
                     print(f"________________________[{request.user.username} {i + 1}]______________________")
+                    question_code_data = self.get_code_data(question)
                     for key in replicated_questions.keys():
+                        code_data = copy.deepcopy(question_code_data)
+                        code_data[0]['question'] = replicated_questions[key][0]
+
+                        code_data_prompt = f"{code_prompt}\n{code_data}"
+
+                        code_response = self.get_response_from_gpt(code_data_prompt)
+                        if code_response.get("finish_reason", "") != 'stop':
+                            return Response({
+                                "error": "GPT was unable to complete the request due to an internal error or because the output exceeded the maximum token limit."},
+                                status=status.HTTP_503_SERVICE_UNAVAILABLE)
+
+                        # with open(f'l_{i}_{key}.json', 'w') as f:
+                        #     json.dump(code_response.get("message"), f)
+
+                        response_code_data = json.loads(self.clean_json_string(code_response.get("message")))
+
+                        input_token += code_response.get("input_token")
+                        output_token += code_response.get("output_token")
+
                         new_question = copy.deepcopy(question)
                         new_question['question_text'] = replicated_questions[key][0]
                         new_question['short_text'] = replicated_questions[key][1]
-                        # print(replicated_questions[key][1])
-                        # print(replicated_questions[key][0])
+
+                        self.set_code_data(new_question, response_code_data)
+
                         replicas[f"question{i + 1}"].append(new_question)
 
                 self.save_data(request.user, len(base_questions) * 4, input_token, output_token)
@@ -310,3 +336,41 @@ class CodingReplicatorView(APIView):
             return True
         except ValueError:
             return False
+
+    def encode(self, s):
+        return base64.b64encode(str(s).encode('utf-8'))
+
+    def decode(self, s):
+        return base64.b64decode(s).decode('utf-8')
+
+    def get_code_data(self, question):
+        solutions = {}
+        for sol in question.get('solutions')[0].get('code_details'):
+            solutions[sol.get('language', 'key')] = (sol.get('code_content', ''))
+
+        prefilled_code = {}
+        for sol in question.get('code_metadata'):
+            prefilled_code[sol.get('language', 'key')] = sol.get('code_data', '')
+
+        backend_code = {}
+
+        for sol in question.get('language_code_repository_details'):
+            file_content = self.decode(sol.get('code_repository')[0].get('file_content'))
+            backend_code[sol.get('language', 'key')] = file_content
+
+        return [{
+            "question": question.get('question_text'),
+            "solutions": solutions,
+            "prefilled_code": prefilled_code,
+            "backend_code": backend_code,
+        }]
+
+    def set_code_data(self, question, code_data):
+        for sol in question.get('solutions')[0].get('code_details'):
+            sol["code_content"] = code_data[0].get('solutions', 'key').get(sol.get('language', 'key'))
+
+        for sol in question.get('code_metadata'):
+            sol["code_data"] = code_data[0].get('prefilled_code', 'key').get(sol.get('language', 'key'))
+
+        for sol in question.get('language_code_repository_details'):
+            sol["code_repository"][0]["file_content"] = self.encode(code_data[0].get('backend_code', 'key').get(sol.get('language', 'key')))

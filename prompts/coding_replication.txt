@@ -67,7 +67,7 @@ The output should be,
 ```
 ```
 2. Once all the five replicas are ready, Return response in the json format given below.
-JOSN FORMAT
+JSON FORMAT
 ```json
 {{
 "replica 1": ["REPLICATED QUESTION IN MARKDOWN FORMAT HERE", "SHORT_TITLE"],

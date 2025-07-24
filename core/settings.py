@@ -143,7 +143,8 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8081",  # Add your allowed domains here
     "http://10.10.27.95:8081",
-    "http://172.31.176.1:8081"
+    "http://172.31.176.1:8081",
+    "http://localhost:63342"
 ]
 
 
