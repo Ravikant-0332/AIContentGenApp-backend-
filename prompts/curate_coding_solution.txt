@@ -1,0 +1,276 @@
+Consider you are an elite coding question solver. 
+I will give you coding question in Markdown format. You need to read the question identify PROBLEM TEXT, INPUT FORMAT, OUTPUT FORMAT and CONSTRAINTS.
+Now you need to create solution code for this question which satisfies the CONSTRAINTS and works with the given input and output format.
+
+You need to create 4 same solution code for this question in 4 languages.
+Languages are:
+1. C
+2. C++
+3. Java
+4. Python
+5. C#
+
+IMPORTANT NOTE: Identify whether the question is FUNCTION BASED or NON FUNCTION BASED. Make sure there will be minimum error this is most important part.
+
+Key-Points
+- If the question is asking to implement a function instead of writing whole code then it is a FUNCTION BASED question.
+- If the question is asking to write whole code from taking input to print output then it is a NON-FUNCTION BASED question.
+
+
+!!!!IMPORTANT POINT
+FOCUS ON ABOVE POINTS YOU NEED TO VERY EFFICIENT TO IDENTIFY THAT QUESTION IS FUNCTION BASED OR IT IS A NON FUNCTION BASED.
+
+
+NOTE:
+
+IF question is NON FUNCTION BASED, then 
+    For each language
+    Solution code - Give all the solution code in single file
+    Backend - Keep Backend code empty
+    PREFILLED CODE - Keep Code upto main function in all the languages and for python keep just keep single line of comment stating that `write your code here`.
+
+ELSE question is FUNCTION BASED then
+
+    For each language you need to create 2 files
+    1. Solution code file
+    2. Backend code file
+
+    `Solution Code file` will contain solution function which is asked in question. If needed this function can be wrapped inside a class named solution for java it will be Solution.
+    `Backend Code file` will contain code to take input and call the function from Solution code file and then printing output into given output format. Make sure you add import statement in python code.
+
+    Once these two are done, create one more file, PREFILLED CODE, this will contain same structure as solution code file, but you need to remove function body and any helper function, so that user can write solution on that template.
+
+    THERE IS ONE IMPORTANT NOTE WHEN writing BACKEND CODE FOR C:
+    C-Backend code should be structured as follows
+        ```
+        [HEADER FILES]
+
+        #ifndef FILE1_H  [IT SHOULD BE THERE]
+        #define FILE1_H  [IT SHOULD BE THERE]
+        [PROTOTYPE OF FUNCTIONS WHICH IS GOING TO BE EXPORTED FROM SOLUTION FILE]
+        #endif  [IT SHOULD BE THERE]
+
+        [MAIN FUNCTION]
+        ```
+
+    Example:
+
+        ```
+        #include<stdio.h>
+
+        #ifndef FILE1_H
+        #define FILE1_H
+        int* next_weaker_number(int, int[]);
+        #endif
+
+        int main(){
+            //Code to take input and call above function.
+        }
+        ```
+
+    Note: This format will help to connect solution file to backend_code, so make sure all C code should be in this format.
+
+
+
+Once you got all the three files for the question then format it into JSON format given below.
+
+JSON format:
+
+{
+    "c": {
+            "solution_code": [C_LANGUAGE_SOLUTION_CODE],
+            "backend_code": [C_LANGUAGE_BACKEND_CODE],
+            "prefilled_code": [C_LANGUAGE_PREFILLED_CODE]
+         },
+    "cpp": {
+            "solution_code": [CPP_LANGUAGE_SOLUTION_CODE],
+            "backend_code": [CPP_LANGUAGE_BACKEND_CODE],
+            "prefilled_code": [CPP_LANGUAGE_PREFILLED_CODE]
+         },
+    "java": {
+            "solution_code": [JAVA_LANGUAGE_SOLUTION_CODE],
+            "backend_code": [JAVA_LANGUAGE_BACKEND_CODE],
+            "prefilled_code": [JAVA_LANGUAGE_PREFILLED_CODE]
+         },
+    "python": {
+            "solution_code": [PYTHON_LANGUAGE_SOLUTION_CODE],
+            "backend_code": [PYTHON_LANGUAGE_BACKEND_CODE],
+            "prefilled_code": [PYTHON_LANGUAGE_PREFILLED_CODE]
+         },
+    "C_SHARP":{
+            "solution_code": [C_SHARP_LANGUAGE_SOLUTION_CODE],
+            "backend_code": [C_SHARP_LANGUAGE_BACKEND_CODE],
+            "prefilled_code": [C_SHARP_LANGUAGE_PREFILLED_CODE]
+    }
+}
+
+Your responses should only contain the json without any backtick or any kind of formatting. It should be a single json string which can be parsed into json directly.
+
+
+CONSIDER EXAMPLE BELOW EXAMPLE TO UNDERSTAND INPUT THAT YOU'LL GET AND OUTPUT EXPECTED FROM YOU.
+
+EXAMPLE FOR FUNCTION BASED QUESTION.
+
+QUESTION (input to you): 
+
+```
+###Alex's Minimum Climb Time
+Alex needs to go from stair `0` to stair `N` in the least amount of time. 
+He can either go up `X` steps in  `K` seconds or up `1` step in each move, which takes `1` second. 
+Implement the function `leastTimeToClimb` which will take `N`, `X` and `K` as arguments and return least time to reach `Nth` stair.
+
+*Note: You need not write code to handle input and output.*
+
+---
+
+####Input Format
+- Single line containing 3 space-separated integers representing `N`, `X` and `K` respectively.
+
+---
+
+####Output Format
+- Single line having 1 integer representing least time to climb.
+
+---
+
+####Example 1
+###### Input
+    5 3 1
+
+######Output
+    3
+
+###### Explanation
+Alex can move from stair 0 to 1 in 1 seconds then from stair 1 to 4 in 1 seconds and finally from stair 4 to 5 in 1 seconds. Hence total time taken by him will be 3 seconds which is minimum.
+
+####Example 2
+###### Input
+    8 3 2
+
+######Output
+    6
+
+###### Explanation
+Alex can move from stair 0 to 3 in 2 seconds then from stair 3 to 5 in 2 seconds by taking 2 steps one by one and finally from stair 5 to 8 in 2 seconds. Hence total time taken by him will be 6 seconds which is minimum.
+
+---
+
+#### Constraints
+- 1<=`N`<=10<sup>6</sup>
+- 1<=`K`<=1000
+- 1<=`X`<=`N`
+
+---
+
+
+```
+
+
+RESPONSE (expected from you)
+
+{
+    "c": {
+            "solution_code": "int leastTimeToClimb(int N, int X, int K) {\n    int time = 0;\n\n    while (N >= X) {\n        int steps_to_take = N / X;\n        time += steps_to_take * K;\n        N -= steps_to_take * X;\n    }\n\n    time += N;\n    return time;\n}",
+            "backend_code": "#include <stdio.h>\nint leastTimeToClimb(int, int, int);\nint main() {\n    int N, X, K;\n    \n    // Read input values\n    scanf(\"%d %d %d\", &N, &X, &K);\n    \n    // Create Solution instance and call the method\n    \n    int result = leastTimeToClimb(N, X, K);\n    \n    // Output the result\n    printf(\"%d\n\", result);\n    \n    return 0;\n}",
+            "prefilled_code": "#include <stdio.h>\nint leastTimeToClimb(int N, int X, int K) {\n    // Implement the function\n    \n    }" 
+         },
+    "cpp": {
+            "solution_code": "int leastTimeToClimb(int N, int X, int K) {\n    int time = 0;\n\n    while (N >= X) {\n        int steps_to_take = N / X;\n        time += steps_to_take * K;\n        N -= steps_to_take * X;\n    }\n\n    time += N;\n    return time;\n}",
+            "backend_code": "#include <iostream>\n#include <sstream>\n#include\"solution.h\"\nusing namespace std;\n\n// Declare the function prototype before using it\nint leastTimeToClimb(int, int, int);\n\nint main() {\n    string inputLine;\n    getline(cin, inputLine);\n    istringstream iss(inputLine);\n    \n    int N, X, K;\n    iss >> N >> X >> K;\n    \n    int result = leastTimeToClimb(N, X, K);\n    \n    cout << result << endl;\n    \n    return 0;\n}\n",
+            "prefilled_code": "#include <bits/stdc++.h>\nusing namespace std;\n\n\nint leastTimeToClimb(int N, int X, int K) {\n // Implement the function\n   \n}\n"
+         },
+    "java": {
+            "solution_code": "public class Solution {\n    public int leastTimeToClimb(int N, int X, int K) {\n        int time = 0;\n\n        while (N >= X) {\n            int stepsToTake = N / X;\n            time += stepsToTake * K;\n            N -= stepsToTake * X;\n        }\n\n        time += N;\n        return time;\n    }\n}",
+            "backend_code": "import java.util.*;\n\npublic class Main {\n\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        \n        // Read input values from the user\n        String inputLine = scanner.nextLine();\n        String[] inputs = inputLine.split(\" \");\n        \n        int N = Integer.parseInt(inputs[0]);\n        int X = Integer.parseInt(inputs[1]);\n        int K = Integer.parseInt(inputs[2]);\n        \n        // Call the problem function\n           Solution solution = new Solution();\n        int result = solution.leastTimeToClimb(N, X, K);\n        \n        // Output the result\n        System.out.println(result);\n        \n        scanner.close();\n    }\n\n}\n",
+            "prefilled_code": "class Solution {\n    public int leastTimeToClimb(int N, int X, int K) {\n        // Implement the function\n    }\n}\n"
+         },
+    "python": {
+            "solution_code": "def leastTimeToClimb(N: int, X: int, K: int) -> int:\n    # Calculate the minimum time to reach the Nth stair\n    time = 0\n\n    # While we can use the shortcut to skip multiple steps\n    while N >= X:\n        steps_to_take = N // X\n        time += steps_to_take * K\n        N -= steps_to_take * X\n\n    # Take 1 step per second for any remaining steps less than X\n    time += N\n    return time\n",
+            "backend_code": "import sys\nfrom solution import *\ndef main():\n    # Read input values from the user\n    input_line = input()\n    N, X, K = map(int, input_line.split())\n    \n    # Call the problem function\n    result = leastTimeToClimb(N, X, K)\n    \n    # Output the result\n    print(result)\n\n# Call main function\nif __name__ == \"__main__\":\n    main()",
+            "prefilled_code" "def leastTimeToClimb(N: int, X: int, K: int) -> int:\n    pass #Replace pass with your code\n": 
+         },
+    "C_SHARP":{
+           "solution_code": "public class Solution\n{\n    public int LeastTimeToClimb(int N, int X, int K)\n    {\n        int time = 0;\n\n        while (N >= X)\n        {\n            int stepsToTake = N / X;\n            time += stepsToTake * K;\n            N -= stepsToTake * X;\n        }\n\n        time += N;\n        return time;\n    }\n}\n",
+           "backend_code": "using System;\n\npublic class main\n{\n    public static void Main()\n    {\n        Solution solution = new Solution();\n        string inputLine = Console.ReadLine();\n        string[] inputs = inputLine.Split(' ');\n\n        int N = int.Parse(inputs[0]);\n        int X = int.Parse(inputs[1]);\n        int K = int.Parse(inputs[2]);\n\n        int result = solution.LeastTimeToClimb(N, X, K);\n        Console.WriteLine(result);\n    }\n}\n",
+           "prefilled_code": "public class Solution\n{\n    public int LeastTimeToClimb(int N, int X, int K)\n    {\n        // Implement the function \n        return 0;\n    }\n}\n"
+    }
+}
+
+EXAMPLE FOR NON FUNCTION BASED QUESTION.
+
+QUESTION (input to you): 
+```
+### Smallest Prime Greater than 10
+You are given a list of integers `L` containing `n` elements. Find the smallest prime number from the list that is greater than 10.
+If there is no prime number greater than 10 in `L`, then print `NO PRIME`.
+
+---
+
+#### Input Format
+- First line contains an integer `n`, the size of the list.
+- Next `n` lines, each containing one integer representing an element of `L`.
+
+---
+
+#### Output Format
+- A single line containing 1 integer representing the smallest prime number greater than 10 or print `NO PRIME`.
+
+---
+
+#### Constraints
+- 2 <= `n` <= 100
+- 1 <= `L[i]` <= 10000
+
+---
+
+#### Example
+
+###### Input
+    3
+    3
+    11
+    17
+
+###### Output
+    11
+
+###### Explanation
+The prime numbers in `L = [3, 11, 17]` greater than 10 are 11 and 17. The smallest among them is 11.
+
+---
+
+```
+
+
+RESPONSE (expected from you):
+
+{
+    "c": {
+            "solution_code": "#include <stdio.h>\n#include <math.h>\n\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    int arr[n];\n    for(int i = 0; i < n; i++) {\n        scanf(\"%d\", &arr[i]);\n    }\n    \n    int smallest_prime = -1;\n    \n    for(int i = 0; i < n; i++) {\n        int num = arr[i];\n        if(num > 10){\n            int is_prime = 1;\n            if(num < 2){\n                is_prime = 0;\n            }\n            else{\n                for(int j = 2; j <= sqrt(num); j++){\n                    if(num % j == 0){\n                        is_prime = 0;\n                        break;\n                    }\n                }\n            }\n            if(is_prime){\n                if(smallest_prime == -1 || num < smallest_prime){\n                    smallest_prime = num;\n                }\n            }\n        }\n    }\n    \n    if(smallest_prime != -1){\n        printf(\"%d\n\", smallest_prime);\n    }\n    else{\n        printf(\"NO PRIME\n\");\n    }\n    \n    return 0;\n}\n",
+            "backend_code": "",
+            "prefilled_code": "#include <stdio.h>\n\nint main()\n{\n     //Write your code here\n     return 0;\n}"
+         },
+    "cpp": {
+            "solution_code": "#include <iostream>\n#include <vector>\n#include <cmath>\nusing namespace std;\n\nint main(){\n    int n;\n    cin >> n;\n    vector<int> arr(n);\n    for(int &num : arr){\n        cin >> num;\n    }\n    \n    int smallest_prime = -1;\n    \n    for(auto num : arr){\n        if(num > 10){\n            bool is_prime = true;\n            if(num < 2){\n                is_prime = false;\n            }\n            else{\n                for(int i = 2; i <= sqrt(num); i++){\n                    if(num % i == 0){\n                        is_prime = false;\n                        break;\n                    }\n                }\n            }\n            if(is_prime){\n                if(smallest_prime == -1 || num < smallest_prime){\n                    smallest_prime = num;\n                }\n            }\n        }\n    }\n    \n    if(smallest_prime != -1){\n        cout << smallest_prime << endl;\n    }\n    else{\n        cout << \"NO PRIME\" << endl;\n    }\n    \n    return 0;\n}\n",
+            "backend_code": "",
+            "prefilled_code": "#include <bits/stdc++.h>\n\nusing namespace std;\n\nint main()\n{\n     //Write your code here\n     return 0;\n}"
+         },
+    "java": {
+            "solution_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        int n = scanner.nextInt();\n        int[] arr = new int[n];\n        for(int i=0;i<n;i++){\n            arr[i] = scanner.nextInt();\n        }\n        \n        Integer smallestPrime = null;\n        \n        for(int num : arr){\n            if(num > 10){\n                boolean isPrime = true;\n                if(num < 2){\n                    isPrime = false;\n                }\n                else{\n                    for(int i=2; i <= Math.sqrt(num); i++){\n                        if(num % i == 0){\n                            isPrime = false;\n                            break;\n                        }\n                    }\n                }\n                if(isPrime){\n                    if(smallestPrime == null || num < smallestPrime){\n                        smallestPrime = num;\n                    }\n                }\n            }\n        }\n        \n        if(smallestPrime != null){\n            System.out.println(smallestPrime);\n        }\n        else{\n            System.out.println(\"NO PRIME\");\n        }\n        \n        scanner.close();\n    }\n}\n",
+            "backend_code": "",
+            "prefilled_code": "import java.util.Scanner;\n \nclass Main {\n    public static void main(String[] args) {\n        //Write your code below\n    }\n}"
+         },
+    "python": {
+            "solution_code": "n = int(input())\narr = [int(input()) for _ in range(n)]\nsmallest_prime = None\n\nfor num in arr:\n    if num > 10:\n        is_prime = True\n        if num < 2:\n            is_prime = False\n        else:\n            for i in range(2, int(num**0.5) + 1):\n                if num % i == 0:\n                    is_prime = False\n                    break\n        if is_prime:\n            if smallest_prime is None or num < smallest_prime:\n                smallest_prime = num\n\nprint(smallest_prime if smallest_prime is not None else \"NO PRIME\")\n",
+            "backend_code": "",
+            "prefilled_code": "#Write your code here\n"
+         },
+    "C_SHARP":{
+        "solution_code": "using System;\n\nclass Program\n{\n    static bool IsPrime(int num)\n    {\n        if (num < 2) return false;\n        for (int i = 2; i * i <= num; i++)\n        {\n            if (num % i == 0) return false;\n        }\n        return true;\n    }\n\n    static void Main()\n    {\n        int n = int.Parse(Console.ReadLine());\n        int[] arr = new int[n];\n\n        string[] input = Console.ReadLine().Split();\n        for (int i = 0; i < n; i++)\n        {\n            arr[i] = int.Parse(input[i]);\n        }\n\n        int? smallestPrime = null;\n\n        foreach (int num in arr)\n        {\n            if (num > 10 && IsPrime(num))\n            {\n                if (smallestPrime == null || num < smallestPrime)\n                {\n                    smallestPrime = num;\n                }\n            }\n        }\n\n        Console.WriteLine(smallestPrime.HasValue ? smallestPrime.ToString() : \"NO PRIME\");\n    }\n}\n",
+        "backend_code": "",
+        "prefilled_code": "using System;\n\nclass Program\n{\n    static void Main()\n    {\n        // Write your code below\n    }\n}\n"
+    }
+}
+
+
+BELOW IS THE QUESTION FOR WHICH YOUR ARE SUPPOSED TO GENERATE SOLUTIONS ACCORDING TO ABOVE DESCRIPTION:

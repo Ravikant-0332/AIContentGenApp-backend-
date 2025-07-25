@@ -13,4 +13,12 @@ class GptResponseSerializer(serializers.Serializer):
     is_updated = serializers.BooleanField(required=False)
     process_name = serializers.CharField(max_length=100, required=False)
 
+class ContextSerializer(serializers.Serializer):
+    context = serializers.CharField()
+    difficulty = serializers.ChoiceField(choices=['EASY', 'MEDIUM', 'HARD', 'easy', 'medium', 'hard'])
+    subtopic = serializers.CharField()
+
+class CodingCuratorSerializer(serializers.Serializer):
+    contexts = ContextSerializer(many=True)
+
 

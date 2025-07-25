@@ -1,0 +1,103 @@
+Consider you are a software tester.
+I will give you coding question in Markdown format. You need to read the question identify PROBLEM TEXT, INPUT FORMAT, OUTPUT FORMAT and CONSTRAINTS.
+
+Based one the above understanding you need to generate 10 testcase for the question.
+
+INSTRUCTIONS FOR TESTCASE GENERATION.
+1. First two testcases will be visible testcases so they should be small testcase COMPULSORILY.
+2. Make sure each testcase aligns best with the given input format.
+3. Each testcase should fall under given constraints.
+4. If there are array as input make sure it's size is greater than 0
+5. IMPORTANT NOTE: While generating testcases there should be variations in the outputs, No more than 2 duplicates outputs should be there in testcases.
+6. IMPORTANT NOTE: Sometimes question will have hidden condition on input such that all random input can't be valid input for the question. You need to make sure none of your testcases will be invalid under this condition.
+
+For each testcase, You should generate an output also.
+
+Your response should be in json format given below.
+
+RESPONSE JSON FORMAT: 
+```
+[
+    {
+        "input": [TESTCASE INPUT],
+        "output": [TESTCASE OUTPUT],
+        "testcase_type": [TESTCASE TYPE]
+    },
+    {
+        "input": [TESTCASE INPUT],
+        "output": [TESTCASE OUTPUT],
+        "testcase_type": [TESTCASE TYPE]
+    },
+]
+```
+
+[!!IMPORTANT NOTE]
+
+Instructions for Providing Testcases:
+    1. Provide Testcases with Actual Values:
+        Instead of providing pseudocode or abstract descriptions, you should only include testcases that consist of actual input values. These values should be specifically tailored to match the question you're solving.
+
+    2. Use Correct Format:
+        Ensure that the testcases you provide follow the correct input-output format as required by the problem statement. The format should be easy for code to read and process.
+
+    3. Testcase Size:
+        The testcase can be small, but it should be complete and correct. Even small testcases should have values that are representative of the problem and will allow the code to function as expected.
+
+    4. Avoid Ambiguity:
+        Ensure that the testcases are clearly structured so that there is no ambiguity. Each value should be explicitly defined and properly formatted to fit the requirements of the program.
+
+
+HIGHEST PRIORITY NOTE: Input should not contain any code as part of input or output until it is asked in question.
+    FOR EXAMPLE: your response SHOULD NOT CONTAIN SUCH INPUT OUTPUTS:
+        {
+            "input": "100\n" + " ".join(str(x) for x in list(range(1, 51)) + list(range(1, 51))),
+            "output": " ".join(str(x) for x in range(1, 51)),
+            "testcase_type": "time complexity"
+        }
+        This response contains code in input and output instead of this you should give correct array values which can be directly read by solution code.
+
+        {
+            "input": "a"*1000 + "\n" + "a"*1000,
+            "output": "1000",
+            "testcase_type": "EDGE_CASE"
+        }
+        Testcases with pseudocode will can't be read by solution code without preprocessing it is invalid testcase and should not be included.
+
+        {
+            "input": "1\na\n1000\naaaaaaaaaa...a",
+            "output": "1",
+            "testcase_type": "EDGE_CASE"
+        }
+        Such incomplete testcases will not be accepted make sure only complete testcases will be returned.
+
+
+Your responses should only contain the json without any backtick or any kind of formatting. It should be a single json string which can be parsed into json directly.
+
+NOTE 1:  MAKE SURE THERE WILL BE EXACTLY 10 TESTCASES.
+NOTE 2: For each test case input and outputs will be single string and if there is lines-breaks then use [\n] to represent line.
+
+    FOR EXAMPLE: If input requires single integer n in first line and n space separated integers in second line then your response for input should be:
+        "input": "5\n1 2 3 4 5"
+
+NOTE 3: Testcase type should be one of the following names:
+        1. NORMAL_CASE
+        2. EDGE_CASE
+
+[!!IMPORTANT NOTE]
+HIGHEST PRIORITY NOTE: Input should not contain any code as part of input or output until it is asked in question.
+    FOR EXAMPLE: your response SHOULD NOT CONTAIN SUCH INPUT OUTPUTS:
+        {
+            "input": "100\n" + " ".join(str(x) for x in list(range(1, 51)) + list(range(1, 51))),
+            "output": " ".join(str(x) for x in range(1, 51)),
+            "testcase_type": "time complexity"
+        }
+        This response contains code in input and output instead of this you should give correct array values which can be directly read by solution code.
+
+IMPORTANT NOTE:BEFORE RESPONDING CHECK WHETHER INPUT AND OUTPUTS ARE AS PER GIVEN INSTRUCTIONS OR NOT. IF NOT THEN CORRECT THEM.
+NOTE: MAKE SURE YOU HAVE GIVEN 10 TESTCASES.
+NOTE: Make Sure the response is complete and is a valid json. If response is getting big then you can decrease testcase size so that response will be complete json.
+
+CHECK: BEFORE RESPONDING CHECK THAT NONE OF THE TESTCASE HAVING CODE OR TESTCASE AS PART OF TESTCASE. THEY SHOULD ONLY CONTAIN ACTUAL VALUES.
+
+BELOW IS THE QUESTION FOR WHICH YOUR ARE SUPPOSED TO GENERATE TESTCASES ACCORDING TO ABOVE DESCRIPTION:
+

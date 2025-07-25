@@ -10,7 +10,8 @@ from .models import UserRequestTrack, PromptUpdateTrack
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from .serializers import PromptSerializer, GptResponseSerializer
+from .serializers import PromptSerializer, GptResponseSerializer, CodingCuratorSerializer
+from .json_to_csv_parser import parse_into_coding_question_csv
 
 
 class GptRequestView(APIView):
@@ -204,88 +205,93 @@ class CodingReplicatorView(APIView):
         data = json.loads(request.body)
         base_questions = data.get('data', None)
 
-        with open(settings.BASE_DIR / 'prompts' / 'coding_replication.txt') as f:
-            base_prompt = f.read().strip()
-
-        with open(settings.BASE_DIR / 'prompts' / 'code_refractor.txt') as f:
-            code_prompt = f.read().strip()
-
         if base_questions is not None or not isinstance(base_questions, list):
 
-            replicas = {f"question{i + 1}": [base_questions[i]] for i in range(len(base_questions))}
-            input_token, output_token = 0, 0
             try:
-                for i, question in enumerate(base_questions):
-                    question_text = question['question_text']
-                    question_short_text = question['short_text']
-
-                    prompt = base_prompt.format(QUESTION=question_text, SHORT_TEXT=question_short_text)
-
-                    response = self.get_response_from_gpt(prompt)
-
-                    if response.get("finish_reason", "") != 'stop':
-                        return Response({
-                                            "error": "GPT was unable to complete the request due to an internal error or because the output exceeded the maximum token limit."},
-                                        status=status.HTTP_503_SERVICE_UNAVAILABLE)
-
-                    input_token += response.get("input_token")
-                    output_token += response.get("output_token")
-                    # print(response.get("message"))
-                    replicated_questions = json.loads(self.clean_json_string(response.get("message")))
-                    print(f"________________________[{request.user.username} {i + 1}]______________________")
-                    question_code_data = self.get_code_data(question)
-                    for key in replicated_questions.keys():
-                        code_data = copy.deepcopy(question_code_data)
-                        code_data[0]['question'] = replicated_questions[key][0]
-
-                        code_data_prompt = f"{code_prompt}\n{code_data}"
-
-                        code_response = self.get_response_from_gpt(code_data_prompt)
-                        if code_response.get("finish_reason", "") != 'stop':
-                            return Response({
-                                "error": "GPT was unable to complete the request due to an internal error or because the output exceeded the maximum token limit."},
-                                status=status.HTTP_503_SERVICE_UNAVAILABLE)
-
-                        # with open(f'l_{i}_{key}.json', 'w') as f:
-                        #     json.dump(code_response.get("message"), f)
-
-                        response_code_data = json.loads(self.clean_json_string(code_response.get("message")))
-
-                        input_token += code_response.get("input_token")
-                        output_token += code_response.get("output_token")
-
-                        new_question = copy.deepcopy(question)
-                        new_question['question_text'] = replicated_questions[key][0]
-                        new_question['short_text'] = replicated_questions[key][1]
-
-                        self.set_code_data(new_question, response_code_data)
-
-                        replicas[f"question{i + 1}"].append(new_question)
-
+                replicas, input_token, output_token = self.get_question_wise_replicas(request, base_questions)
                 self.save_data(request.user, len(base_questions) * 4, input_token, output_token)
-
-                for key in replicas.keys():
-                    for q in replicas.get(key):
-                        q_id = str(uuid.uuid4())
-                        q['question_id'] = q_id
-
-                        tag_names = [item for item in q['tag_names'] if not self.is_uuid(item)]
-                        tag_names.append(q_id)
-                        q['tag_names'] = tag_names
-
+                self.update_question_id(replicas)
                 return Response({
                     "message": replicas,
                     "input_token": input_token,
                     "output_token": output_token,
                     "total_token": input_token + output_token,
                 }, status=status.HTTP_200_OK)
-
             except json.JSONDecodeError as e:
                 return Response({"error": f"JSONDecodeError: {e}"}, status=status.HTTP_400_BAD_REQUEST)
             except Exception as e:
                 return Response({"error": f"{e}"}, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response({"error": "Invalid request body"}, status=status.HTTP_400_BAD_REQUEST)
+
+    def get_question_wise_replicas(self, request, base_questions):
+        base_prompt = self.get_base_prompt()
+        code_prompt = self.get_code_prompt()
+
+        replicas = {f"question{i + 1}": [base_questions[i]] for i in range(len(base_questions))}
+        input_token, output_token = 0, 0
+        for i, question in enumerate(base_questions):
+            question_text = question['question_text']
+            question_short_text = question['short_text']
+
+            prompt = base_prompt.format(QUESTION=question_text, SHORT_TEXT=question_short_text)
+
+            response = self.get_response_from_gpt(prompt)
+
+            if response.get("finish_reason", "") != 'stop':
+                return Response({
+                    "error": "GPT was unable to complete the request due to an internal error or because the output exceeded the maximum token limit."},
+                    status=status.HTTP_503_SERVICE_UNAVAILABLE)
+
+            input_token += response.get("input_token")
+            output_token += response.get("output_token")
+            replicated_questions = json.loads(self.clean_json_string(response.get("message")))
+            print(f"________________________[{request.user.username} {i + 1}]______________________")
+            question_code_data = self.get_code_data(question)
+            for key in replicated_questions.keys():
+                code_data = copy.deepcopy(question_code_data)
+                code_data[0]['question'] = replicated_questions[key][0]
+
+                code_data_prompt = f"{code_prompt}\n{code_data}"
+
+                code_response = self.get_response_from_gpt(code_data_prompt)
+                if code_response.get("finish_reason", "") != 'stop':
+                    return Response({
+                        "error": "GPT was unable to complete the request due to an internal error or because the output exceeded the maximum token limit."},
+                        status=status.HTTP_503_SERVICE_UNAVAILABLE)
+
+                response_code_data = json.loads(self.clean_json_string(code_response.get("message")))
+
+                input_token += code_response.get("input_token")
+                output_token += code_response.get("output_token")
+
+                new_question = copy.deepcopy(question)
+                new_question['question_text'] = replicated_questions[key][0]
+                new_question['short_text'] = replicated_questions[key][1]
+
+                self.set_code_data(new_question, response_code_data)
+
+                replicas[f"question{i + 1}"].append(new_question)
+
+        return replicas, input_token, output_token
+
+    def get_base_prompt(self):
+        with open(settings.BASE_DIR / 'prompts' / 'coding_replication.txt') as f:
+            return f.read().strip()
+
+    def get_code_prompt(self):
+        with open(settings.BASE_DIR / 'prompts' / 'code_refractor.txt') as f:
+            return f.read().strip()
+
+    def update_question_id(self, replicas):
+        for key in replicas.keys():
+            for q in replicas.get(key):
+                q_id = str(uuid.uuid4())
+                q['question_id'] = q_id
+
+                tag_names = [item for item in q['tag_names'] if not self.is_uuid(item)]
+                tag_names.append(q_id)
+                q['tag_names'] = tag_names
 
     def save_data(self, user, question_count, input_token, output_token):
 
@@ -374,3 +380,131 @@ class CodingReplicatorView(APIView):
 
         for sol in question.get('language_code_repository_details'):
             sol["code_repository"][0]["file_content"] = self.encode(code_data[0].get('backend_code', 'key').get(sol.get('language', 'key')))
+
+
+class CodingCuratorView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+
+        serializer = CodingCuratorSerializer(data=request.data)
+        if serializer.is_valid():
+            data = serializer.validated_data
+            questions = {}
+            for i, context in enumerate(data.get('contexts')):
+                print(f"Curating question {i+1}")
+                resp = self.curate_question_from_context(context)
+                if type(resp) is dict:
+                    questions[i] = resp
+                else:
+                    return resp
+                # print(f"{'-' * 50}\n{questions[i]}\n{'-' * 50}")
+
+            csv_content = parse_into_coding_question_csv(questions)
+            return Response({"csv_content": csv_content})
+
+        else:
+            return Response({"error": "Invalid request body"}, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response({"message": "Testing message"})
+
+    def save_data(self, user, question_count, input_token, output_token):
+
+        user_data = UserRequestTrack(
+            user=user,
+            question_type="Coding",
+            topic="REPLICATION",
+            question_count=question_count,
+            input_token=input_token,
+            output_token=output_token
+        )
+        user_data.save()
+
+    def get_response_from_gpt(self, prompt):
+
+        client = OpenAI(api_key=settings.OPENAI_API_KEY)
+        completion = client.chat.completions.create(
+            model="gpt-4o",
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ]
+        )
+
+        result = {
+            "message": completion.choices[0].message.content,
+            "input_token": completion.usage.prompt_tokens,
+            "output_token": completion.usage.completion_tokens,
+            "total_token": completion.usage.total_tokens,
+            "finish_reason": completion.choices[0].finish_reason
+        }
+
+        return result
+
+    def clean_json_string(self, raw_str):
+        cleaned = re.sub(r'^\s*\w+\s*=\s*', '', raw_str, flags=re.IGNORECASE)
+        cleaned = re.sub(r'^```[a-zA-Z]*', '', cleaned)
+        cleaned = re.sub(r'```$', '', cleaned)
+        cleaned = cleaned.replace('`', '')
+        cleaned = cleaned.strip()
+        return cleaned
+
+    def get_question_curation_prompt(self, context):
+        with open(settings.BASE_DIR / 'prompts' / 'curate_coding_question.txt') as f:
+            return f.read().strip().format(question_context=context)
+
+    def get_solution_curation_prompt(self, question):
+        with open(settings.BASE_DIR / 'prompts' / 'curate_coding_solution.txt') as f:
+            return f.read().strip()+question
+
+    def get_testcases_curation_prompt(self, question):
+        with open(settings.BASE_DIR / 'prompts' / 'curate_coding_testcases.txt') as f:
+            return f.read().strip()+question
+
+    def curate_question_from_context(self, context, retry_limit=3):
+        subtopic = context['subtopic']
+        difficulty = context['difficulty']
+        context_data = context['context']
+        input_token, output_token = 0, 0
+
+        #   TRYING TO GENERATE PROBLEM TEXT
+        question_response = self.get_response_from_gpt(self.get_question_curation_prompt(context_data))
+        try:
+            question = json.loads(self.clean_json_string(question_response.get("message")))
+        except json.decoder.JSONDecodeError:
+            return Response({"error": "Invalid JSON response while generating problem text from GPT"},
+                            status=status.HTTP_400_BAD_REQUEST)
+        #   TRYING TO GENERATE SOLUTION
+        solution_response = self.get_response_from_gpt(self.get_solution_curation_prompt(question.get("content")))
+        try:
+            solution = json.loads(self.clean_json_string(solution_response.get("message")))
+        except json.decoder.JSONDecodeError:
+            return Response({"error": "Invalid JSON response while generating solution from GPT"},
+                            status=status.HTTP_400_BAD_REQUEST)
+        #   TRYING TO GENERATE TESTCASES
+        for i in range(retry_limit):
+            testcases_response = self.get_response_from_gpt(self.get_testcases_curation_prompt(question.get("content")))
+            try:
+                testcases = json.loads(self.clean_json_string(testcases_response.get("message")))
+            except json.decoder.JSONDecodeError:
+                if i >= retry_limit-1:
+                    return Response({"error": "Invalid JSON response while generating testcases from GPT"},
+                                status=status.HTTP_400_BAD_REQUEST)
+                print(f"Retrying #{i+1}")
+
+        input_token = question_response.get("input_token") + solution_response.get("input_token") + testcases_response.get("input_token")
+        output_token = question_response.get("output_token") + solution_response.get("output_token") + testcases_response.get("output_token")
+
+        return {
+            "title": question.get("title"),
+            "difficulty": difficulty,
+            "subtopic": subtopic,
+            "problem_text": question.get("content"),
+            "solutions": solution,
+            "testcases": testcases
+        }
+
+
+
